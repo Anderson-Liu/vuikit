@@ -17,6 +17,10 @@ export default {
       type: Boolean,
       default: false
     }
+    isActive: {
+      type: Boolean,
+      default: true
+    }
   },
   render (h, { props, data, listeners, children }) {
     const { active, disabled, title, icon } = props
@@ -29,7 +33,10 @@ export default {
         'uk-disabled': disabled
       }
     }), [
-      h('a', { on: listeners }, [
+      h('a', { on: listeners }, {
+        class: {
+          'active': isActive,
+        }}, [
         title,
         icon && h(ElementIcon, {
           class: 'uk-margin-small-left'
